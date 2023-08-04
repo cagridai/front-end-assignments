@@ -1,0 +1,89 @@
+@font-face {
+    font-family: 'Avenir-Black';
+    src: url('/Users/saphira/Desktop/Front End/Ödev 1 (Opsiyonel)/assets/fonts/Avenir-Black.woff') format('woff'),
+         url('/Users/saphira/Desktop/Front End/Ödev 1 (Opsiyonel)/assets/fonts/Avenir-Black.woff2') format('woff2');
+         font-weight: normal;
+         font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir-Medium';
+    src: url('/Users/saphira/Desktop/Front End/Ödev 1 (Opsiyonel)/assets/fonts/Avenir-Medium.woff') format('woff'),
+         url('/Users/saphira/Desktop/Front End/Ödev 1 (Opsiyonel)/assets/fonts/Avenir-Medium.woff2') format('woff2');
+         font-weight: normal;
+         font-style: normal;
+}
+
+@font-face {
+    font-family: 'AvantGradePro';
+    src: url('/Users/saphira/Desktop/Front End/Ödev 1 (Opsiyonel)/assets/fonts/ITCAvantGardePro-Bold.eot') format('eot'),
+         url('/Users/saphira/Desktop/Front End/Ödev 1 (Opsiyonel)/assets/fonts/ITCAvantGardePro-Bold.ttf') format('ttf'),
+         url('/Users/saphira/Desktop/Front End/Ödev 1 (Opsiyonel)/assets/fonts/ITCAvantGardePro-Bold.woff') format('woff'),
+         url('/Users/saphira/Desktop/Front End/Ödev 1 (Opsiyonel)/assets/fonts/ITCAvantGardePro-Bold.woff2') format('woff2');
+         font-weight: normal;
+         font-style: normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    display: flex;
+    font-family: 'Avenir-Medium', sans-serif;
+}
+
+main {
+    display: flex;
+    flex: 1;
+    height: 100vh;
+}
+
+.photo {
+    flex: 1;
+    background-image: url('/assets/images/bg.jpg');
+    background-size: cover;
+    background-position: top center;
+}
+
+.cover-photo {
+    margin: 0;
+    padding: 0;
+}
+
+.insert-class-name {
+    margin-left: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.headings h1 {
+    font-family: 'Avenir-Black', sans-serif;
+    width: 300px;
+}
+
+.headings p {
+    color: #787878;
+    width: 500px;
+}
+
+.headings span {
+    border-bottom: #aaa solid 2px;
+    font-family: 'AvantGradePro', sans-serif;
+}
+
+.shopping {
+    font-size: 12px;
+}
+
+.shopping-items {
+    height: 300px;
+    width: 200px;
+    margin: 40px 0 10px;
+}
+
+.model {
+    margin-bottom: 50px;
+}
+

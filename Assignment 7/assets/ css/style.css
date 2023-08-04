@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    background-color: #FFF5E4;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    gap: 40px;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 40px;
+    height: 100px;
+    border-radius: 20px;
+    box-shadow: 5px 10px 20px;
+    padding: 100px;
+    background-color: #850E35;
+}
+
+.box span {
+    font-weight: 700;
+    font-size: 40px;
+    color: #FFC4C4;
+}
+
+.box button {
+    font-size: 20px;
+    padding: 10px 20px;
+    background-color: #EE6983;
+    border: 1px solid #FFF5E4;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #850E35;
+}
+
+main button:hover {
+    background-color: #C86B85;
+}
+
+.students {
+    display: flex;
+    gap: 70px;
+    background-color: #C86B85;
+    border-radius: 20px;
+    padding: 30px 62px;
+    box-shadow: 5px 10px 20px;
+}
+
+.students .first-half {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.students .second-half {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input[type=checkbox] {
+    position: relative;
+    cursor: pointer;
+}
+
+input[type=checkbox]:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    top: 0;
+    left: 0;
+    background-color: #FFF5E4;
+}
+
+input[type=checkbox]:checked:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    top: 0;
+    left: 0;
+    background-color: #850E35;
+}
+
+input[type=checkbox]:checked:after {
+    content: "";
+    display: block;
+    width: 5px;
+    height: 10px;
+    border: solid #FFF5E4;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    position: absolute;
+    bottom: 2px;
+    left: 3px;
+}
