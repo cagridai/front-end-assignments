@@ -1,13 +1,23 @@
-const apiURL = "https://rickandmortyapi.com/api/character"
+const cardContainer = document.querySelector('#card-container')
 
-fetch(apiURL)
-    .then(response => response.json())
-    .then(data => makeCards(data.results))
+let currentPage = 1
+let isFetching = false
+let hasMore = true
 
-function makeCards(charactersArray) {
-    const cardContainer = document.querySelector('#card-container')
 
-    charactersArray.forEach(character => {
+async function fetchData() {
+    isFetching = true
+
+    let response = await fetch(`https://rickandmortyapi.com/api/character?page=${currentPage}`)
+    let data = await response.json()
+    isFetching = false
+
+    if (data.info.next === null) {
+        hasMore = false
+        return
+    }
+
+    data.results.forEach(character => {
         cardContainer.innerHTML += 
              `
              <div id='character-card-${character.id}' class='cards'>
@@ -31,4 +41,18 @@ function makeCards(charactersArray) {
              </div> 
              `
     })
+
+    currentPage++
 }
+
+window.addEventListener('scroll', () => {
+    if (isFetching || !hasMore) {
+        return 
+    }
+
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        fetchData()
+    }
+})
+
+fetchData()
