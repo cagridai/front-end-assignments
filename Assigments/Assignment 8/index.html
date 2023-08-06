@@ -8,6 +8,18 @@
     </head>
     <body>
         <h1>Rick and Morty Api</h1>
+        <div>
+            <span>Filter by:</span>
+            <select class="select-filter" onchange="filterSelectionUpdate()">
+              <option value="all">Select</option>
+              <option value="name">Name</option>
+              <option value="status">Status</option>
+              <option value="species">Species</option>
+              <option value="type">Type</option>
+              <option value="gender">Gender</option>
+            </select>
+            <input type="text" name="search" onkeyup="filterTextUpdate(this)">
+          </div>
         <section id="card-container"></section>
         <script src="main.js"></script>
     </body>
