@@ -4,19 +4,36 @@ let currentPage = 1
 let isFetching = false
 let hasMore = true
 
+const filter = document.getElementsByClassName('select-filter')[0]
+let searchEndpoint = filter.value
+let searchValue = ''
+
+function filterSelectionUpdate() {
+    searchEndpoint = filter.value
+}
+
+function filterTextUpdate(e) {
+    searchValue = e.value
+    currentPage = 1
+    fetchData()
+}
 
 async function fetchData() {
     isFetching = true
 
-    let response = await fetch(`https://rickandmortyapi.com/api/character?page=${currentPage}`)
+    let response = await fetch(`https://rickandmortyapi.com/api/character?page=${currentPage}&${searchEndpoint}=${searchValue}`)
     let data = await response.json()
-    isFetching = false
 
+    if (data) {
+        isFetching = false
+    }
+    
     if (data.info.next === null) {
         hasMore = false
         return
     }
 
+    cardContainer.innerHTML = ''
     data.results.forEach(character => {
         cardContainer.innerHTML += 
              `

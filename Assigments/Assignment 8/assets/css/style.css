@@ -13,6 +13,41 @@ h1 {
     color: rgba(245, 245, 245, 1);
 }
 
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: rgba(60, 62, 68, 1);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    border-radius: 0.5rem;
+    width: 600px;
+    padding: 10px 0;
+    position: relative;
+}
+
+.search-bar span {
+    color: rgb(255, 255, 255);
+}
+
+.select-filter {
+    width: 100px;
+    border: none;
+    border-radius: 0.2rem;
+}
+
+.search-bar input {
+    width: 300px;
+    border: none;
+    border-radius: 0.2rem;
+}
+
 #card-container {
     display: flex;
     flex-wrap: wrap;
