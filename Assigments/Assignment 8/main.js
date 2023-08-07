@@ -1,42 +1,43 @@
-const cardContainer = document.querySelector('#card-container')
+const cardContainer = document.querySelector("#card-container");
 
-let currentPage = 1
-let isFetching = false
-let hasMore = true
+let currentPage = 1;
+let isFetching = false;
+let hasMore = true;
 
-const filter = document.getElementsByClassName('select-filter')[0]
-let searchEndpoint = filter.value
-let searchValue = ''
+const filter = document.getElementsByClassName("select-filter")[0];
+let searchEndpoint = filter.value;
+let searchValue = "";
 
 function filterSelectionUpdate() {
-    searchEndpoint = filter.value
+  searchEndpoint = filter.value;
 }
 
 function filterTextUpdate(e) {
-    searchValue = e.value
-    currentPage = 1
-    fetchData()
+  searchValue = e.value;
+  currentPage = 1;
+  cardContainer.innerHTML = "";
+  fetchData();
 }
 
 async function fetchData() {
-    isFetching = true
+  isFetching = true;
 
-    let response = await fetch(`https://rickandmortyapi.com/api/character?page=${currentPage}&${searchEndpoint}=${searchValue}`)
-    let data = await response.json()
+  let response = await fetch(
+    `https://rickandmortyapi.com/api/character?page=${currentPage}&${searchEndpoint}=${searchValue}`
+  );
+  let data = await response.json();
 
-    if (data) {
-        isFetching = false
-    }
-    
-    if (data.info.next === null) {
-        hasMore = false
-        return
-    }
+  if (data) {
+    isFetching = false;
+  }
 
-    cardContainer.innerHTML = ''
-    data.results.forEach(character => {
-        cardContainer.innerHTML += 
-             `
+  if (data.info.next === null) {
+    hasMore = false;
+    return;
+  }
+
+  data.results.forEach((character) => {
+    cardContainer.innerHTML += `
              <div id='character-card-${character.id}' class='cards'>
                 <div class='card-image'>
                     <img src=${character.image}></img>
@@ -56,20 +57,20 @@ async function fetchData() {
                     </div>
                 </div>
              </div> 
-             `
-    })
+             `;
+  });
 
-    currentPage++
+  currentPage++;
 }
 
-window.addEventListener('scroll', () => {
-    if (isFetching || !hasMore) {
-        return 
-    }
+window.addEventListener("scroll", () => {
+  if (isFetching || !hasMore) {
+    return;
+  }
 
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        fetchData()
-    }
-})
+  if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+    fetchData();
+  }
+});
 
-fetchData()
+fetchData();
