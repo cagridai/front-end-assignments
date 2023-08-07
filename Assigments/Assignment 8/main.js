@@ -15,6 +15,7 @@ function filterSelectionUpdate() {
 function filterTextUpdate(e) {
   searchValue = e.value;
   currentPage = 1;
+  cardContainer.innerHTML = "";
   fetchData();
 }
 
@@ -35,7 +36,6 @@ async function fetchData() {
     return;
   }
 
-  cardContainer.innerHTML = "";
   data.results.forEach((character) => {
     cardContainer.innerHTML += `
              <div id='character-card-${character.id}' class='cards'>
