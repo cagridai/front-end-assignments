@@ -2,7 +2,8 @@ const apiUrl = "https://kokpit.smartlimon.com/items/"
 const token = "AmN8rnhDsZLLox3-WBVcdmIxFDmRuqhK"
 
 const movieForm = document.getElementById("movie-form")
-const moviesElm = document.getElementById("movie-list")
+const deleteBtn = document.getElementsByClassName("delete")
+const mainElm = document.getElementById("main")
 
 const fetchApi = (endPoint = "", method = "GET", payload = null) => {
   return new Promise((resolve, reject) => {
@@ -45,30 +46,49 @@ function addMovie(e) {
 }
 
 function getMovies() {
-  moviesElm.innerHTML = ""
   fetchApi("movies").then((resp) => {
     resp.forEach((element) => {
-      let liElm = document.createElement("li")
-      let deleteElm = document.createElement("button")
-      deleteElm.textContent = "Sil"
-      deleteElm.setAttribute("id", "delete-button")
-      deleteElm.setAttribute("onclick", `deleteMovie(${element.id})`)
-      liElm.setAttribute("id", element.id)
-      liElm.innerText =
-        element.name + " - " + element.director + " - " + element.score + " -> "
-      moviesElm.append(liElm)
-      liElm.append(deleteElm)
+      let movieBox = document.createElement("div")
+      movieBox.setAttribute("class", "movie-box")
+      movieBox.innerHTML = `
+      <div class="delete">
+        <button class="delete-button">Sil</button>
+      </div>
+
+      <div class="movie">
+        <span class="movie-name">İsim: ${element.name}</span>
+        <span class="movie-director">Yönetmen: ${element.director}</span>
+        <span class="movie-score">Skor: ${element.score}</span>
+      </div>
+
+      <div id="${element.movie_id}"></div>
+      `
+      mainElm.append(movieBox)
     })
   })
 }
 
 function deleteMovie(id) {
   fetchApi("movies/" + id, "DELETE")
+  fetchApi("comment/" + id, "DELETE")
+}
+
+function getComments() {
+  fetchApi("comment").then((resp) => {
+    const moviesId = document.getElementsByClassName("movies_id")
+    resp.forEach((comment) => {
+      let commentElm = moviesId[parseInt(comment.movie_id)]
+      if (commentElm) {
+        commentElm.innerText += " " + comment.comment
+      }
+    })
+  })
 }
 
 function init() {
   movieForm.addEventListener("submit", addMovie)
   getMovies()
+  getComments()
 }
 
 init()

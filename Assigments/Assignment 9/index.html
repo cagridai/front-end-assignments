@@ -7,15 +7,33 @@
     <title>Document</title>
   </head>
   <body>
-    <form id="movie-form" method="post">
-      <input type="text" name="name" placeholder="Film adı giriniz" />
-      <input type="text" name="director" placeholder="Yönetmen adı giriniz" />
-      <input type="text" name="score" placeholder="Skor giriniz" />
-      <button type="submit">Film ekle</button>
-    </form>
+    <main id="main">
+      <form id="movie-form" method="post">
+        <input type="text" name="name" placeholder="Film adı giriniz" />
+        <input type="text" name="director" placeholder="Yönetmen adı giriniz" />
+        <input type="text" name="score" placeholder="Skor giriniz" />
+        <button type="submit">Film ekle</button>
+      </form>
 
-    <div class="movie-box"></div>
+      <div class="movie-box">
+        <div class="delete">
+          <button class="delete-button">Sil</button>
+        </div>
+
+        <div class="movie">
+          <span class="movie-name">Name</span>
+          <span class="movie-director">Yönetmen</span>
+          <span class="movie-score">Skor</span>
+        </div>
+
+        <div class="comments">
+          <span class="comment">Yorum</span>
+        </div>
+      </div>
+    </main>
+    <!--
     <ul id="movie-list"></ul>
+    -->
 
     <script src="main.js"></script>
   </body>
