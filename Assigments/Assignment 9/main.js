@@ -1,9 +1,9 @@
 const apiUrl = "https://kokpit.smartlimon.com/items/"
-const token = "AmN8rnhDsZLLox3-WBVcdmIxFDmRuqhK"
+const token = 
 
 const movieForm = document.getElementById("movie-form")
-const deleteBtn = document.getElementsByClassName("delete")
 const mainElm = document.getElementById("main")
+const moviesElm = document.getElementById("movies")
 
 const fetchApi = (endPoint = "", method = "GET", payload = null) => {
   return new Promise((resolve, reject) => {
@@ -46,13 +46,15 @@ function addMovie(e) {
 }
 
 function getMovies() {
-  fetchApi("movies").then((resp) => {
-    resp.forEach((element) => {
-      let movieBox = document.createElement("div")
-      movieBox.setAttribute("class", "movie-box")
-      movieBox.innerHTML = `
+  moviesElm.innerHTML = ""
+  fetchApi("movies")
+    .then((resp) => {
+      resp.forEach((element) => {
+        let movieBox = document.createElement("div")
+        movieBox.setAttribute("class", "movie-box")
+        movieBox.innerHTML = `
       <div class="delete">
-        <button class="delete-button">Sil</button>
+        <button class="delete-button" onclick="deleteMovie(${element.id})">Sil</button>
       </div>
 
       <div class="movie">
@@ -61,25 +63,28 @@ function getMovies() {
         <span class="movie-score">Skor: ${element.score}</span>
       </div>
 
-      <div id="${element.movie_id}"></div>
+      <div class="comments">
+        <span class="comment-text">Yorumlar</span>
+        <span class="comment" id="${element.id}"></span>
+      </div>
       `
-      mainElm.append(movieBox)
+        moviesElm.append(movieBox)
+      })
     })
-  })
+    .then((resp) => getComments())
 }
 
 function deleteMovie(id) {
   fetchApi("movies/" + id, "DELETE")
-  fetchApi("comment/" + id, "DELETE")
 }
 
 function getComments() {
   fetchApi("comment").then((resp) => {
-    const moviesId = document.getElementsByClassName("movies_id")
+    const moviesId = document.getElementsByClassName("comment")
     resp.forEach((comment) => {
-      let commentElm = moviesId[parseInt(comment.movie_id)]
-      if (commentElm) {
-        commentElm.innerText += " " + comment.comment
+      let commentApi = moviesId[parseInt(comment.movie_id)]
+      if (commentApi) {
+        commentApi.innerHTML += `<span class="comment">${comment.comment}</span>`
       }
     })
   })
@@ -88,7 +93,6 @@ function getComments() {
 function init() {
   movieForm.addEventListener("submit", addMovie)
   getMovies()
-  getComments()
 }
 
 init()
