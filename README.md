@@ -12,6 +12,7 @@ The tasks I did during the course are in this repository
 | Assigment 6 | <a href="https://github.com/cagridai/front-end-assignments/tree/master/Assigments/Assignment%206"> Project </a>| First, full-size site image exported, translated into code |
 | Assigment 7 | <a href="https://github.com/cagridai/front-end-assignments/tree/master/Assigments/Assignment%207"> Project </a>| Getting started at Javascript and a random student selection program was made|
 | Assigment 8 | <a href="https://github.com/cagridai/front-end-assignments/tree/master/Assigments/Assignment%208"> Project </a>| How to handle api. Rick and Morty characters project|
+| Assigment 9 | <a href="https://github.com/cagridai/front-end-assignments/tree/master/Assigments/Assignment%209"> Project </a>| CRUD on Rest Api|
 ## Tech Stack
 
 **Client:** --
