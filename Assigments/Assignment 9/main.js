@@ -1,5 +1,5 @@
 const apiUrl = "https://kokpit.smartlimon.com/items/"
-const token = 
+const token = "" //put your token here
 
 const movieForm = document.getElementById("movie-form")
 const mainElm = document.getElementById("main")
@@ -7,31 +7,17 @@ const moviesElm = document.getElementById("movies")
 
 const fetchApi = (endPoint = "", method = "GET", payload = null) => {
   return new Promise((resolve, reject) => {
-    if (method === "DELETE") {
-      fetch(apiUrl + endPoint, {
-        method: method,
-        headers: {
-          "Content-Type": "application/json; charset = utf-8",
-          Authorization: "Bearer " + token
-        }
-      })
-        .then((res) => {
-          getMovies()
-        })
-        .catch((err) => reject(err))
-    } else {
-      fetch(apiUrl + endPoint, {
-        method: method,
-        body: payload ? JSON.stringify(payload) : payload,
-        headers: {
-          "Content-Type": "application/json; charset = utf-8",
-          Authorization: "Bearer " + token
-        }
-      })
-        .then((resp) => resp.json())
-        .then((resp) => resolve(resp.data))
-        .catch((err) => reject(err))
-    }
+    fetch(apiUrl + endPoint, {
+      method: method,
+      body: payload ? JSON.stringify(payload) : payload,
+      headers: {
+        "Content-Type": "application/json; charset = utf-8",
+        Authorization: "Bearer " + token
+      }
+    })
+      .then((resp) => (method === "DELETE" ? null : resp.json()))
+      .then((resp) => resolve(resp.data))
+      .catch((err) => reject(err))
   })
 }
 
@@ -75,7 +61,7 @@ function getMovies() {
 }
 
 function deleteMovie(id) {
-  fetchApi("movies/" + id, "DELETE")
+  fetchApi("movies/" + id, "DELETE").then(getMovies())
 }
 
 function getComments() {
