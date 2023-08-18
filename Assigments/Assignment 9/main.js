@@ -80,7 +80,7 @@ function getComments() {
       if (commentApi) {
         commentApi.innerHTML += `
         <span class="comment">${comment.comment}</span>
-        <button onclick="">Yorumu Düzenle</button>
+        <button onclick="changeComment(${comment.id})">Yorumu Düzenle</button>
         <button onclick="deleteComment(${comment.id})">Yorumu Sil</button>
         `
       }
@@ -103,6 +103,8 @@ function addCommentText(id) {
     comment: getText
   }).then(getMovies())
 }
+
+function changeComment(id) {}
 
 function deleteComment(id) {
   fetchApi("comment/" + id, "DELETE").then(getMovies())
