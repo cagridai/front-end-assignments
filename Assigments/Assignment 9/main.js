@@ -1,5 +1,5 @@
 const apiUrl = "https://kokpit.smartlimon.com/items/"
-const token = "AmN8rnhDsZLLox3-WBVcdmIxFDmRuqhK" //put your token here
+const token = "" //put your token here
 
 const movieForm = document.getElementById("movie-form")
 const mainElm = document.getElementById("main")
