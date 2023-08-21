@@ -27,29 +27,31 @@ function getMovies() {
   moviesElm.innerHTML = ""
   fetchApi("movies")
     .then((resp) => {
+      console.log(resp)
       resp.forEach((element) => {
         let movieBox = document.createElement("div")
         movieBox.setAttribute("class", "movie-box")
         movieBox.innerHTML = `
-      <div class="delete">
-        <button class="delete-button" onclick="deleteMovie(${element.id})">Sil</button>
-      </div>
+        <div class="movie">
+          <div class="movie-haeder">
+            <span class="movie-name">${element.name}</span>
+            <button class="delete-button" onclick="deleteMovie(${element.id})">Sil</button>
+          </div>
+          <span class="movie-director">Yönetmen: ${element.director}</span>
+          <span class="movie-score">Skor: ${element.score}</span>
+        </div>
 
-      <div class="movie">
-        <span class="movie-name">İsim: ${element.name}</span>
-        <span class="movie-director">Yönetmen: ${element.director}</span>
-        <span class="movie-score">Skor: ${element.score}</span>
-      </div>
+        <div class="comment-header">
+          <span class="comment-text">Yorumlar</span>
+        </div>
 
-      <div class="comments">
-        <span class="comment-text">Yorumlar</span>
-        <span class="comment" id="${element.id}"></span>
-      </div>
-
-      <div id="add-comment-${element.id}">
-        <button class="add-comment-btn" onclick="addComment(${element.id})">Yorum Ekle</button>
-      </div>
-      `
+        <div class="comments">
+          <div class="text-area">
+            <textarea class="comment-box comment-textarea"  id="textarea-${element.id}" placeholder="Yorumunuzu buraya giriniz"></textarea>
+            <button class="add-comment-btn" onclick="addComment(${element.id})">Yorum Ekle</button>
+          </div>
+        </div>
+        `
         moviesElm.append(movieBox)
       })
     })
@@ -74,37 +76,43 @@ function deleteMovie(id) {
 
 function getComments() {
   fetchApi("comment").then((resp) => {
+    console.log(resp)
     const moviesId = document.getElementsByClassName("comments")
     resp.forEach((comment) => {
       let commentApi = moviesId[parseInt(comment.movie_id)]
       if (commentApi) {
         commentApi.innerHTML += `
-        <span class="comment">${comment.comment}</span>
-        <button onclick="changeComment(${comment.id})">Yorumu Düzenle</button>
-        <button onclick="deleteComment(${comment.id})">Yorumu Sil</button>
+          <div class="comment-box">
+            <span class="comment" id="${comment.id}">${comment.comment}</span>
+            <div class="changeButtons">
+              <button onclick="changeComment(${comment.id})">Yorumu Düzenle</button>
+              <button onclick="deleteComment(${comment.id})">Yorumu Sil</button>
+            </div>
+          </div>
         `
       }
     })
+    let commentsToSort = document.getElementsByClassName("comment")
   })
 }
 
 function addComment(id) {
-  const addCommentDiv = document.getElementById(`add-comment-${id}`)
-  addCommentDiv.innerHTML = `
-  <input type="text" id="comment-text" class="add-comment-input" name="comment">
-  <button onclick=addCommentText(${id - 1})>Yorumu ekle</button>
+  let getText = document.getElementById(`textarea-${id}`).value
+  if (getText) {
+    fetchApi("comment", "POST", {
+      movie_id: id,
+      comment: getText
+    }).then(getMovies())
+  }
+}
+
+function changeComment(id) {
+  let commentToChange = document.getElementById(`${id}`)
+  const commentText = commentToChange.value
+  commentToChange.innerHTML = `
+  <textarea class="comment-box comment-textarea">${commentText}</textarea>
   `
 }
-
-function addCommentText(id) {
-  const getText = document.getElementById(`comment-text`).value
-  fetchApi(`comment`, "POST", {
-    movie_id: id,
-    comment: getText
-  }).then(getMovies())
-}
-
-function changeComment(id) {}
 
 function deleteComment(id) {
   fetchApi("comment/" + id, "DELETE").then(getMovies())
