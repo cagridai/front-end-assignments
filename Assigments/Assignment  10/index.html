@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Twitter Clone</title>
+  </head>
+
+  <body>
+    <main>
+      <div class="form">
+        <div class="error"></div>
+        <textarea
+          name="comment-input"
+          id="comment-input"
+          placeholder="Yorumunuzu buraya giriniz"
+        ></textarea>
+        <span class="char-limit">Karakter 0/42</span>
+        <button type="submit">Gönder</button>
+      </div>
+
+      <div class="feeds">
+        <div class="feed">
+          <div class="header">
+            <img
+              src="assets/img/Cagri.jpeg"
+              alt="author-photo"
+              class="avatar"
+            />
+            <div class="author">
+              <span class="author-name">Çağrı Dai</span>
+              <span class="author-nickname">@lord_melon</span>
+            </div>
+          </div>
+
+          <div class="content">
+            <p>Lölölölö is life</p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.js"
+      integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+      crossorigin="anonymous"
+    ></script>
+    <script src="main.js"></script>
+  </body>
+</html>
