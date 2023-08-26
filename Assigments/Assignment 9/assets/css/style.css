@@ -38,14 +38,8 @@ main {
   justify-content: center;
   flex-direction: column;
   width: 300px;
-  padding: 20px 0;
   background-color: #222831;
   color: #eeeeee;
-}
-
-.delete {
-  position: relative;
-  left: 85%;
 }
 
 .delete-button {
@@ -64,6 +58,28 @@ main {
   align-items: flex-start;
   gap: 10px;
   padding: 20px;
+  width: 100%;
+}
+
+.movie-haeder {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  border-bottom: 1px solid #393e46;
+  padding: 10px 0;
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  border-bottom: 1px solid #393e46;
+  padding: 10px 0;
+}
+
+.comments button:hover {
+  cursor: pointer;
 }
 
 .comments {
@@ -73,9 +89,24 @@ main {
   padding: 20px;
 }
 
-.comment-text {
+.add-comment-btn {
+  background-color: #222831;
+  color: #eeeeee;
+  /* border: none; */
+}
+
+.comment-text,
+.movie-name {
   font-weight: 700;
   font-size: 20px;
+}
+
+.comment-box {
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  border-bottom: 1px solid #393e46;
+  padding-bottom: 20px;
 }
 
 .comment {
@@ -83,4 +114,52 @@ main {
   flex-direction: column;
   align-items: flex-start;
   padding-top: 10px;
+  width: 70%;
+}
+
+.changeButtons {
+  display: flex;
+  position: relative;
+  left: 37%;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.changeButtons button {
+  background-color: #222831;
+  color: #eeeeee;
+  font-size: 10px;
+  border: 1px solid #393e46;
+  box-shadow: 1px 1px 10px #393e46;
+}
+
+.changeButtons button:hover {
+  cursor: pointer;
+}
+
+.comment-textarea {
+  background-color: #77777765;
+  color: #eee;
+}
+
+.comment-textarea::placeholder {
+  color: #eee;
+}
+
+.text-area {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 7px;
+}
+
+@media screen and (max-width: 660px) {
+  main {
+    width: 100%;
+  }
+
+  #movie-form {
+    flex-direction: column;
+    width: 260px;
+  }
 }
