@@ -9,16 +9,18 @@
 
   <body>
     <main>
-      <div class="form">
+      <form class="form" id="feed-form">
         <div class="error"></div>
         <textarea
           name="comment-input"
           id="comment-input"
           placeholder="Yorumunuzu buraya giriniz"
         ></textarea>
-        <span class="char-limit">Karakter 0/42</span>
-        <button type="submit">Gönder</button>
-      </div>
+        <div class="char-limit">
+          Karakter <span id="char-lenght">0</span>/42
+        </div>
+        <button type="submit" disabled>Gönder</button>
+      </form>
 
       <div class="feeds">
         <div class="feed">
